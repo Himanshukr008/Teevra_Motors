@@ -1,4 +1,5 @@
 /* ===== Particle System ===== */
+/*
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -73,6 +74,8 @@ window.addEventListener('resize', () => {
   resizeCanvas();
   createParticles();
 });
+
+*/
 
 /* ===== Cursor Glow ===== */
 const cursorGlow = document.getElementById('cursorGlow');
