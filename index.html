@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Teevra Motors — Premium Automotive Experience</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var theme = localStorage.getItem('teevra-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M5 11l1.5-4.5h11L19 11v2H5v-2zm2.5 5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm9 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18 9l-1-3H7L6 9h12z"/>
+          </svg>
+        </span>
+        Teevra<span>Motors</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#models" class="nav-link">Models</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <a href="#contact" class="btn btn-primary nav-cta magnetic-btn">Book Test Drive</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <video
+        class="hero-video"
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        src="assets/hero-bg.mp4"
+      ></video>
+      <div class="hero-video-overlay"></div>
+      <div class="hero-gradient"></div>
+      <div class="speed-lines">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="container hero-layout">
+      <div class="hero-text">
+        <div class="hero-tag reveal-up">
+          <span class="pulse-dot"></span>
+          2026 Premium Collection
+        </div>
+        <h1 class="hero-title reveal-up">
+          Drive the<br />
+          <span class="gradient-text" id="heroRotatingText">Future</span>
+        </h1>
+        <p class="hero-desc reveal-up">
+          Experience unmatched performance, cutting-edge electric innovation,
+          and breathtaking design. Your dream car awaits.
+        </p>
+        <div class="hero-buttons reveal-up">
+          <a href="#models" class="btn btn-primary magnetic-btn">
+            Explore Models
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#gallery" class="btn btn-glass magnetic-btn">View Gallery</a>
+        </div>
+
+        <div class="hero-specs reveal-up">
+          <div class="spec-chip">
+            <strong>0-100</strong>
+            <span>2.9 sec</span>
+          </div>
+          <div class="spec-chip">
+            <strong>Top Speed</strong>
+            <span>320 km/h</span>
+          </div>
+          <div class="spec-chip">
+            <strong>Range</strong>
+            <span>620 km</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right">
+        <div class="car-showcase">
+          <div class="car-glow"></div>
+          <div class="car-ring ring-1"></div>
+          <div class="car-ring ring-2"></div>
+          <picture class="hero-car-picture">
+            <!-- <source srcset="assets/cars/f1racer1.avif" type="image/avif" /> -->
+            <img
+              src="assets/cars/endurance-lambo.jpg"
+              alt="Premium racing car"
+              class="hero-car-img"
+              id="heroCarImg"
+              loading="eager"
+              decoding="async"
+              data-fallback="assets/cars/endurance-lambo.jpg"
+            />
+          </picture>
+          <div class="car-reflection"></div>
+        </div>
+        <div class="floating-badge badge-1">
+          <span class="badge-icon">⚡</span>
+          <div>
+            <strong>850 HP</strong>
+            <small>Peak Power</small>
+          </div>
+        </div>
+        <div class="floating-badge badge-2">
+          <span class="badge-icon">🏁</span>
+          <div>
+            <strong>AWD</strong>
+            <small>All-Wheel Drive</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#models" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
+      <span class="scroll-text">Scroll to Explore</span>
+      <div class="scroll-track">
+        <div class="scroll-thumb"></div>
+      </div>
+    </a>
+
+    <audio id="bgMusic" loop preload="auto" src="assets/kulakovka-racing-281126.mp3"></audio>
+
+    <button class="audio-toggle" id="audioToggle" type="button" aria-label="Enable background music" aria-pressed="false">
+      <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- Brand Marquee -->
+  <div class="marquee-section" aria-label="Partner automotive brands">
+    <div class="marquee-wrapper">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+  </div>
+  
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat-block reveal-up">
+        <span class="stat-number" data-target="2500">0</span><span class="stat-suffix">+</span>
+        <p>Cars Sold</p>
+      </div>
+      <div class="stat-block reveal-up">
+        <span class="stat-number" data-target="45">0</span><span class="stat-suffix">+</span>
+        <p>Premium Brands</p>
+      </div>
+      <div class="stat-block reveal-up">
+        <span class="stat-number" data-target="99">0</span><span class="stat-suffix">%</span>
+        <p>Happy Drivers</p>
+      </div>
+      <div class="stat-block reveal-up">
+        <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
+        <p>Years Excellence</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models -->
+  <section class="section models" id="models">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Our Fleet</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Models</span></h2>
+        <p class="section-desc">Handpicked performance machines engineered for thrill seekers and luxury enthusiasts.</p>
+      </div>
+
+      <div class="models-grid">
+        <article class="model-card tilt-card reveal-up" style="--delay:0" data-tilt>
+          <div class="model-image">
+            <img src="assets/cars/model-gt.jpg" alt="Teevra GT-R Pro" loading="lazy" decoding="async" />
+            <span class="model-tag">Best Seller</span>
+          </div>
+          <div class="model-info">
+            <h3>Teevra GT-R Pro</h3>
+            <p class="model-type">Sports Coupe</p>
+            <div class="model-specs">
+              <span>720 HP</span><span>3.2s 0-100</span><span>AWD</span>
+            </div>
+            <div class="model-footer">
+              <span class="model-price">$189,000</span>
+              <a href="#contact" class="btn btn-sm btn-primary">Configure</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="model-card tilt-card reveal-up" style="--delay:1" data-tilt>
+          <div class="model-image">
+            <img src="assets/cars/model-ev.jpg" alt="Teevra E-X900" loading="lazy" decoding="async" />
+            <span class="model-tag electric">Electric</span>
+          </div>
+          <div class="model-info">
+            <h3>Teevra E-X900</h3>
+            <p class="model-type">Electric Sedan</p>
+            <div class="model-specs">
+              <span>650 HP</span><span>620 km</span><span>Dual Motor</span>
+            </div>
+            <div class="model-footer">
+              <span class="model-price">$124,000</span>
+              <a href="#contact" class="btn btn-sm btn-primary">Configure</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="model-card tilt-card reveal-up" style="--delay:2" data-tilt>
+          <div class="model-image">
+            <img src="assets/cars/model-suv.jpg" alt="Teevra SUV-X7" loading="lazy" decoding="async" />
+            <span class="model-tag">New</span>
+          </div>
+          <div class="model-info">
+            <h3>Teevra SUV-X7</h3>
+            <p class="model-type">Luxury SUV</p>
+            <div class="model-specs">
+              <span>580 HP</span><span>7 Seats</span><span>4x4</span>
+            </div>
+            <div class="model-footer">
+              <span class="model-price">$156,000</span>
+              <a href="#contact" class="btn btn-sm btn-primary">Configure</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Why Teevra</span>
+        <h2 class="section-title">Engineered for <span class="gradient-text">Excellence</span></h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal-left">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Performance First</h3>
+          <p>Track-tuned engines and aerodynamics delivering raw power with precision handling.</p>
+          <div class="feature-bar"><div class="feature-bar-fill" data-width="95"></div></div>
+        </div>
+        <div class="feature-card reveal-up">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Electric Innovation</h3>
+          <p>Next-gen battery technology with ultra-fast charging and extended range capabilities.</p>
+          <div class="feature-bar"><div class="feature-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="feature-card reveal-right">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Advanced Safety</h3>
+          <p>AI-powered collision avoidance, 360° cameras, and 5-star crash protection ratings.</p>
+          <div class="feature-bar"><div class="feature-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="feature-card reveal-left">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Smart Cockpit</h3>
+          <p>Holographic HUD, voice AI assistant, and seamless smartphone integration.</p>
+          <div class="feature-bar"><div class="feature-bar-fill" data-width="90"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Racing Gallery -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Racing Gallery</span>
+        <h2 class="section-title">Our <span class="gradient-text">Racing Fleet</span></h2>
+        <p class="section-desc">10 distinct racing machines — Formula, GT, Rally, Drag, Endurance & Electric. Explore specs, engine details, and features for every car in the fleet.</p>
+      </div>
+
+      <!-- Configurator -->
+      <div class="gallery-configurator reveal-up">
+        <div class="config-preview">
+          <div class="config-preview-frame">
+            <img src="" alt="Selected racing car" id="configCarImg" class="config-car-img" />
+            <div class="config-preview-glow"></div>
+            <span class="config-badge" id="configBadge">GT Racing</span>
+            <span class="config-category" id="configCategory">GT</span>
+          </div>
+
+          <div class="config-specs config-specs-extended" id="configSpecs">
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <strong id="specHp">850</strong><span>Max Power (HP)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+              <strong id="specSpeed">340</strong><span>Top Speed (km/h)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <strong id="specAccel">2.8</strong><span>0–100 km/h (sec)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+              <strong id="specTorque">720</strong><span>Peak Torque (Nm)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              <strong id="specWeight">1420</strong><span>Curb Weight (kg)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+              <strong id="specDrivetrain">AWD</strong><span>Drivetrain</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19h16M4 15l4-8h8l4 8"/></svg>
+              <strong id="specPowerWeight">—</strong><span>Power / Weight</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
+              <strong id="specRedline">—</strong><span>Redline (RPM)</span>
+            </div>
+            <div class="config-spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <strong id="specAccel200">—</strong><span>0–200 km/h (sec)</span>
+            </div>
+          </div>
+
+          <div class="config-performance">
+            <h3 class="config-label">Performance Index <small>8 metrics · fleet benchmark</small></h3>
+            <div class="perf-bars" id="perfBars">
+              <div class="perf-bar-row"><span>Power</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="power"></div></div><em id="perfPowerVal">0</em></div>
+              <div class="perf-bar-row"><span>Top Speed</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="speed"></div></div><em id="perfSpeedVal">0</em></div>
+              <div class="perf-bar-row"><span>Handling</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="handling"></div></div><em id="perfHandlingVal">0</em></div>
+              <div class="perf-bar-row"><span>Aero</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="aero"></div></div><em id="perfAeroVal">0</em></div>
+              <div class="perf-bar-row"><span>Braking</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="braking"></div></div><em id="perfBrakingVal">0</em></div>
+              <div class="perf-bar-row"><span>Acceleration</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="acceleration"></div></div><em id="perfAccelVal">0</em></div>
+              <div class="perf-bar-row"><span>Durability</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="durability"></div></div><em id="perfDurabilityVal">0</em></div>
+              <div class="perf-bar-row"><span>Efficiency</span><div class="perf-bar-track"><div class="perf-bar-fill" data-key="efficiency"></div></div><em id="perfEfficiencyVal">0</em></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-controls">
+          <div class="config-block">
+            <h3 class="config-label">Choose Model <small>(10 in fleet)</small></h3>
+            <div class="model-selector" id="modelSelector"></div>
+          </div>
+
+          <div class="config-block config-block-row">
+            <div class="config-subblock">
+              <h3 class="config-label">Drive Mode</h3>
+              <div class="drive-mode-selector" id="driveModeSelector">
+                <button type="button" class="drive-mode-btn active" data-mode="sport">Sport</button>
+                <button type="button" class="drive-mode-btn" data-mode="track">Track</button>
+                <button type="button" class="drive-mode-btn" data-mode="efficiency">Efficiency</button>
+              </div>
+            </div>
+            <div class="config-subblock">
+              <h3 class="config-label">Choose Color</h3>
+              <div class="color-selector" id="colorSelector"></div>
+              <p class="color-name" id="colorName">Racing Red</p>
+            </div>
+          </div>
+
+          <div class="config-detail-panel">
+            <div class="config-tabs" id="configTabs" role="tablist">
+              <button type="button" class="config-tab active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+              <button type="button" class="config-tab" data-tab="engine" role="tab" aria-selected="false">Engine</button>
+              <button type="button" class="config-tab" data-tab="chassis" role="tab" aria-selected="false">Chassis</button>
+              <button type="button" class="config-tab" data-tab="features" role="tab" aria-selected="false">Features</button>
+              <button type="button" class="config-tab" data-tab="technology" role="tab" aria-selected="false">Technology</button>
+            </div>
+
+            <div class="config-tab-panels">
+              <div class="config-tab-panel active" id="panelOverview" data-panel="overview" role="tabpanel">
+                <div class="config-info">
+                  <h4 id="configCarName">Teevra Thunder GT</h4>
+                  <p id="configCarDesc">Track-bred GT racer built for apex precision and straight-line dominance.</p>
+                  <p class="config-pedigree" id="configPedigree"></p>
+                </div>
+                <div class="spec-sheet" id="specSheet"></div>
+                <div class="config-highlights" id="configHighlights"></div>
+              </div>
+
+              <div class="config-tab-panel" id="panelEngine" data-panel="engine" role="tabpanel">
+                <div class="engine-grid" id="engineGrid"></div>
+              </div>
+
+              <div class="config-tab-panel" id="panelChassis" data-panel="chassis" role="tabpanel">
+                <div class="chassis-grid" id="chassisGrid"></div>
+              </div>
+
+              <div class="config-tab-panel" id="panelFeatures" data-panel="features" role="tabpanel">
+                <div class="feature-detail-grid" id="featureList"></div>
+              </div>
+
+              <div class="config-tab-panel" id="panelTechnology" data-panel="technology" role="tabpanel">
+                <div class="tech-grid" id="techGrid"></div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary btn-sm config-cta">Configure This Build</a>
+        </div>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-tabs reveal-up" id="filterTabs">
+        <button class="filter-btn active" data-filter="all">All Racers</button>
+        <button class="filter-btn" data-filter="f1">Formula 1</button>
+        <button class="filter-btn" data-filter="gt">GT Racing</button>
+        <button class="filter-btn" data-filter="rally">Rally</button>
+        <button class="filter-btn" data-filter="drag">Drag</button>
+        <button class="filter-btn" data-filter="endurance">Endurance</button>
+        <button class="filter-btn" data-filter="electric">Electric Race</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-title">Driver <span class="gradient-text">Stories</span></h2>
+      </div>
+
+      <div class="testimonial-slider reveal-up">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card active">
+            <div class="stars">★★★★★</div>
+            <p>"The Teevra GT-R Pro is an absolute beast. The acceleration is mind-blowing and the interior feels like a luxury spaceship."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AK</div>
+              <div>
+                <strong>Alex Kumar</strong>
+                <span>GT-R Pro Owner</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Switched to the E-X900 and never looked back. 620km range, instant torque, and the smoothest ride I've ever experienced."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SL</div>
+              <div>
+                <strong>Sophia Lee</strong>
+                <span>E-X900 Owner</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Teevra Motors made buying my dream SUV effortless. Premium service from test drive to delivery. Five stars all the way!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JM</div>
+              <div>
+                <strong>James Miller</strong>
+                <span>SUV-X7 Owner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info reveal-left">
+          <span class="section-tag">Get in Touch</span>
+          <h2 class="section-title">Book Your <span class="gradient-text">Test Drive</span></h2>
+          <p>Ready to feel the power? Schedule a test drive at our showroom and experience automotive excellence firsthand.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <strong>Showroom</strong>
+                <p>742 ,Platinum Boulevard,sector-68, Gurugram ,Haryana 12008 , India</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <strong>Toll free Numbers</strong>
+                <p>+1 833-265-5695 <strong>TEEVRA-1</strong></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <p>purnea@teevramotors</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal-right" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="name" placeholder="Full Name" required />
+              <label for="name">Full Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder="Email Address" required />
+              <label for="email">Email Address</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="model" required>
+              <option value="" disabled selected>Select Model</option>
+              <option value="gt-r">Teevra GT-R Pro</option>
+              <option value="e-x900">Teevra E-X900</option>
+              <option value="suv-x7">Teevra SUV-X7</option>
+            </select>
+            <label for="model">Preferred Model</label>
+          </div>
+          <div class="form-group">
+            <input type="date" id="date" required />
+            <label for="date">Preferred Date</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="3" placeholder="Additional Notes"></textarea>
+            <label for="message">Additional Notes</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full magnetic-btn">
+            Book Test Drive
+            <span class="btn-shine"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M5 11l1.5-4.5h11L19 11v2H5v-2zm2.5 5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm9 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18 9l-1-3H7L6 9h12z"/>
+            </svg>
+          </span>
+          Teevra<span>Motors</span>
+        </a>
+        <p>Redefining automotive luxury with performance, innovation, and unmatched craftsmanship.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <a href="#models">Models</a>
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Test Drive</a>
+      </div>
+      <div class="footer-social">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 00-1.94 2A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 001.94-2A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p><strong>&copy; 2026 Teevra Motors. All rights reserved.</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script src="cars-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
